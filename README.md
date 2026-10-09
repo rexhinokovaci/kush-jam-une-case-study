@@ -19,6 +19,35 @@
 - New categories go live the same day, with no store review.
 - Ad frequency and pricing can be tuned remotely without shipping a new build.
 
+## Lessons learned
+
+- **When content is the product, keep it out of the binary.** Serving categories, cards, packs and settings from the backend means the game can change daily without app releases.
+- **Decouple app and content pipelines.** A separate backend deploy pipeline means app releases and content changes never block each other.
+- **Plan for the backend being unreachable.** Remote config ships with in-app defaults, so the game keeps working when the backend can't be reached.
+- **Don't build billing you can buy.** RevenueCat gives one entitlement system across iOS and Android, with no receipt validation to maintain.
+
+## FAQ
+
+### How do new cards and categories reach players without an app update?
+
+The app loads categories, cards, packs and game settings from a Cloudflare Workers API backed by D1. Content is managed in an admin panel, so new categories go live the same day.
+
+### How is the game monetized?
+
+Subscriptions and premium packs through RevenueCat, plus AdMob banner, interstitial and rewarded ads. Ad frequency is set by the backend, so revenue and retention can be balanced without shipping a build.
+
+### Why Expo and React Native?
+
+One TypeScript codebase covers iOS and Android, built with EAS, which keeps a content-driven game fast to iterate on.
+
+### What happens if the backend is down?
+
+The app ships with remote-config defaults, so it keeps working when the backend can't be reached.
+
+### Can you build a content-driven mobile game or app for my business?
+
+Yes. I'm a mobile app developer and DevOps engineer based in Tirana, Albania, building iOS and Android apps with subscriptions, ads and live content for clients across the Balkans and Europe. [Email me about your project](mailto:kovacirexhino@gmail.com?subject=Project%20inquiry).
+
 ## Read more
 
 - [Architecture and key decisions](docs/architecture.md)
